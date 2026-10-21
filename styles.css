@@ -1,0 +1,453 @@
+:root {
+	color-scheme: dark;
+	font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	color: #f4f2f9;
+	background: #111119;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+	outline: 3px solid #dfd3ff;
+	outline-offset: 5px;
+}
+
+button {
+	font: inherit;
+}
+
+p,
+h1,
+h2,
+h3 {
+	margin: 0;
+}
+
+.site {
+	width: min(100%, 1184px);
+	margin-inline: auto;
+	padding: 32px;
+}
+
+.skip-link {
+	position: absolute;
+	z-index: 1;
+	top: 8px;
+	left: 12px;
+	padding: 12px 18px;
+	border-radius: 6px;
+	color: #21183a;
+	background: #c5b6ff;
+	transform: translateY(-150%);
+}
+
+.skip-link:focus {
+	transform: translateY(0);
+}
+
+.site-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+}
+
+.brand {
+	display: inline-flex;
+	flex-shrink: 0;
+	border-radius: 4px;
+}
+
+.brand img {
+	display: block;
+	width: 208px;
+	height: auto;
+}
+
+.studio-note {
+	color: #b4afc3;
+	font-size: 13px;
+	text-align: right;
+}
+
+.intro {
+	margin-block: 56px 48px;
+}
+
+.eyebrow {
+	color: #bbadf7;
+	font-size: 11px;
+	font-weight: 650;
+	letter-spacing: 2px;
+	line-height: 1.6;
+	text-transform: uppercase;
+}
+
+h1 {
+	margin-block: 16px 20px;
+	font-size: clamp(2.25rem, 5vw, 3.5rem);
+	font-weight: 750;
+	letter-spacing: -1.8px;
+	line-height: 1.08;
+}
+
+h1 span {
+	color: #c4b5fd;
+}
+
+.intro-description {
+	color: #b4afc3;
+	font-size: 15px;
+	line-height: 1.75;
+}
+
+.collection:focus {
+	outline: none;
+}
+
+.collection-heading {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 16px;
+	margin-bottom: 20px;
+}
+
+.collection-heading h2 {
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.collection-heading p {
+	color: #aaa3ba;
+	font-size: 12px;
+}
+
+.game-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 24px;
+}
+
+.game-card {
+	display: flex;
+	min-width: 0;
+	flex-direction: column;
+}
+
+.game-art {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 460 / 215;
+	border: 1px solid #ffffff0a;
+	border-radius: 9px;
+	background: #20202d;
+	object-fit: cover;
+}
+
+.galaxy-art {
+	object-position: 35% center;
+}
+
+.game-meta {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 8px 12px;
+	margin-block: 20px 11px;
+}
+
+.status {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 10px;
+	font-weight: 650;
+	letter-spacing: .7px;
+	line-height: 1.5;
+	text-transform: uppercase;
+}
+
+.status::before {
+	width: 5px;
+	height: 5px;
+	flex-shrink: 0;
+	border-radius: 50%;
+	background: currentColor;
+	content: "";
+}
+
+.status-live {
+	color: #8edcaf;
+}
+
+.status-soon {
+	color: #e9c185;
+}
+
+.status-development {
+	color: #b4a8ce;
+}
+
+.genre {
+	color: #aaa3ba;
+	font-size: 11px;
+	line-height: 1.5;
+}
+
+.game-card h3 {
+	font-size: 23px;
+	letter-spacing: -.5px;
+	line-height: 1.25;
+}
+
+.game-description {
+	margin-block: 11px 24px;
+	color: #b4afc3;
+	font-size: 14px;
+	line-height: 1.7;
+}
+
+.working-title {
+	color: #aaa3ba;
+	font-size: 12px;
+}
+
+.game-actions {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 9px;
+	margin-top: auto;
+}
+
+.action {
+	display: flex;
+	min-height: 48px;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 12px;
+	border: 1px solid transparent;
+	border-radius: 7px;
+	font-size: 14px;
+	font-weight: 650;
+	line-height: 1.4;
+	text-align: center;
+	transition: background-color 150ms, border-color 150ms;
+}
+
+.action-primary {
+	border-color: #c5b6ff;
+	color: #21183a;
+	background: #c5b6ff;
+}
+
+.action-primary:hover {
+	border-color: #d5caff;
+	background: #d5caff;
+}
+
+.action-steam {
+	border-color: #3c607b;
+	color: #f0f6fd;
+	background: #193247;
+}
+
+.action-steam:hover {
+	border-color: #6496ba;
+	background: #244963;
+}
+
+.action:disabled {
+	border-color: #302c3b;
+	color: #aaa3ba;
+	background: #1b1b25;
+}
+
+.platform-icon {
+	display: block;
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+}
+
+.action:disabled .platform-icon {
+	opacity: .5;
+}
+
+.source-link {
+	display: inline-flex;
+	min-height: 44px;
+	align-items: center;
+	align-self: flex-start;
+	gap: 7px;
+	margin-top: 7px;
+	border-radius: 4px;
+	color: #b4abc7;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.source-link svg {
+	width: 15px;
+	height: 15px;
+	flex-shrink: 0;
+	fill: currentColor;
+}
+
+.source-link:hover {
+	color: #dfd3fc;
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+
+.site-footer {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 12px 24px;
+	margin-top: 40px;
+	padding-top: 24px;
+	border-top: 1px solid #ffffff14;
+	color: #aaa3ba;
+	font-size: 12px;
+	line-height: 1.7;
+}
+
+.site-footer p:last-child {
+	color: #b6a8d7;
+}
+
+@media (width <= 800px) {
+	.site {
+		padding: 24px;
+	}
+
+	.brand img {
+		width: 180px;
+	}
+
+	.game-grid {
+		gap: 18px;
+	}
+
+	.game-card h3 {
+		font-size: 20px;
+	}
+
+	.game-description {
+		font-size: 13px;
+	}
+
+	.game-meta {
+		gap: 6px;
+	}
+
+	.status {
+		font-size: 9px;
+	}
+
+	.genre {
+		font-size: 10px;
+	}
+
+	.action {
+		font-size: 13px;
+	}
+}
+
+@media (width <= 700px) {
+	.site {
+		max-width: 540px;
+		padding: 20px;
+	}
+
+	.site-header {
+		gap: 16px;
+	}
+
+	.brand img {
+		width: 164px;
+	}
+
+	.studio-note {
+		font-size: 10px;
+	}
+
+	.intro {
+		margin-block: 40px 36px;
+	}
+
+	.eyebrow {
+		font-size: 9px;
+		letter-spacing: 1.6px;
+	}
+
+	h1 {
+		font-size: clamp(1.9rem, 8.8vw, 2.75rem);
+		letter-spacing: -1.4px;
+	}
+
+	.intro-description {
+		font-size: 14px;
+	}
+
+	.collection-heading h2 {
+		font-size: 13px;
+	}
+
+	.collection-heading p {
+		font-size: 11px;
+	}
+
+	.game-grid {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 32px;
+	}
+
+	.game-meta {
+		margin-top: 15px;
+	}
+
+	.game-card h3 {
+		font-size: 23px;
+	}
+
+	.game-description {
+		margin-bottom: 20px;
+		font-size: 14px;
+	}
+
+	.action {
+		font-size: 14px;
+	}
+
+	.site-footer {
+		flex-wrap: wrap;
+		margin-top: 32px;
+		font-size: 10px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.action {
+		transition: none;
+	}
+}
