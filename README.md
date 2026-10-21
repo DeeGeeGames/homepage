@@ -34,7 +34,7 @@ Namecheap BasicDNS hosts the zone. The apex (`@`) uses GitHub Pages A records `1
 Each card in `index.html` has independent web and Steam actions, with a GitHub source link underneath. Keep unavailable destinations as native disabled buttons. Replace a disabled button with a labeled link only when the destination is public and ready.
 
 - **All or Nothing:** browser release at `https://allornothing.app/`; Steam app `4537590`. Keep the existing web address until a migration is agreed.
-- **Math Marsh:** coming soon on both platforms. Its planned web destination is `https://mathmarsh.deegeegames.com/`. Steam app `4927380` redirected to the Steam homepage when checked on 2026-10-20, so the page does not advertise an active wishlist link yet.
+- **Math Marsh:** browser release at `https://mathmarsh.deegeegames.com/`. Steam is coming soon. Steam app `4927380` redirected to the Steam homepage when checked on 2026-10-20, so the page does not advertise an active wishlist link yet.
 - **Galaxy Conquest:** working title, in development. No public web or Steam destination is advertised. The source repository currently belongs to `david0178418`.
 
 When a web game launches, replace “Web coming soon” with the same browser icon and “Play now” link as All or Nothing. For a public unreleased Steam listing, use the Steam logo and “Wishlist on Steam”; for a released game, use “View on Steam”.
