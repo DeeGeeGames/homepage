@@ -19,11 +19,15 @@ bun run build
 bun run preview
 ```
 
-`check` validates the HTML; `build` writes the deployable site to `dist/`. There is no application JavaScript or TypeScript to typecheck. Run both checks before submitting a pull request. No CI workflow is installed yet; the connected GitHub credential needs the `workflow` scope to add one.
+`check` validates the HTML; `build` writes the deployable site to `dist/`. There is no application JavaScript or TypeScript to typecheck. Run both checks before submitting a pull request. GitHub Actions runs both checks on pull requests and pushes to `master`.
 
 ## Hosting
 
-Serve `dist/` on any static host at the root of `deegeegames.com`. Build command: `bun install --frozen-lockfile && bun run build`. Output directory: `dist`. No SPA routing or server runtime is required. This repository does not provision hosting, configure DNS, or publish automatically.
+GitHub Pages serves `dist/` at the root of `https://deegeegames.com/`. The workflow in `.github/workflows/pages.yml` deploys successful builds from `master`; it can also be run manually from that branch. Pull requests validate and build without deploying. No SPA routing or server runtime is required.
+
+In the repository's **Settings → Pages**, select **GitHub Actions** as the source, set the custom domain to `deegeegames.com`, and enable **Enforce HTTPS** once GitHub provisions the certificate. The custom domain must be set in Pages settings; `public/CNAME` also carries it into the build output.
+
+Namecheap BasicDNS hosts the zone. The apex (`@`) uses GitHub Pages A records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, and `185.199.111.153`. The `www` CNAME points to `deegeegames.github.io`; GitHub Pages redirects it to the canonical apex domain. Preserve the existing Google email/verification and `mathmarsh` records when updating DNS.
 
 ## Game availability
 
