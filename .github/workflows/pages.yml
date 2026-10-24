@@ -27,6 +27,8 @@ jobs:
         run: bun run check
       - name: Build site
         run: bun run build
+        env:
+          VITE_GA_MEASUREMENT_ID: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' && vars.VITE_GA_MEASUREMENT_ID || '' }}
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
         uses: actions/upload-pages-artifact@v4
