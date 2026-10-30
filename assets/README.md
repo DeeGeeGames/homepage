@@ -12,3 +12,5 @@
 - `power-up.webp`: published Power Up gameplay thumbnail, copied unchanged on 2026-10-29 from https://experiments.deegeegames.com/images/power-up.webp .
 - `steam.svg`: Steam icon from Simple Icons, https://github.com/simple-icons/simple-icons/blob/develop/icons/steam.svg . CC0 notice retained in `simple-icons-LICENSE.md`. The original path is retained with the fill set to the button foreground color. Steam and its logo belong to Valve.
 - Browser, source, and playground flask icons: small inline code-native SVG shapes in `index.html`.
+
+- `reactionator.webp`: development screenshot captured from Reactionator for its homepage card.

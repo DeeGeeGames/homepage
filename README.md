@@ -47,6 +47,8 @@ The main game cards in `index.html` have independent web and Steam actions, with
 - **Math Marsh:** browser release at `https://mathmarsh.deegeegames.com/`. Public unreleased Steam listing at `https://store.steampowered.com/app/4927380/Math_Marsh/`, advertised as “Wishlist on Steam”. Math Marsh is the first card in the collection.
 - **Starward Tide:** in development, playable in the browser at `https://starwardtide.deegeegames.com/`. Source: `https://github.com/DeeGeeGames/starward-tide`. No Steam destination is advertised.
 
+- **Reactionator:** in development, follows Starward Tide. Browser: `https://reactionator.deegeegames.com/`. Source: `https://github.com/DeeGeeGames/Reactionator`. Local multiplayer reaction challenges for 2–4 players.
+
 When a web game launches, replace “Web coming soon” with the same browser icon and “Play now” link as All or Nothing. For a public unreleased Steam listing, use the Steam logo and “Wishlist on Steam”; for a released game, use “View on Steam”.
 
 ## Prototypes and experiments
