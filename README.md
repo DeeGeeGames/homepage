@@ -41,13 +41,19 @@ Namecheap BasicDNS hosts the zone. The apex (`@`) uses GitHub Pages A records `1
 
 ## Game availability
 
-Each card in `index.html` has independent web and Steam actions, with a GitHub source link underneath. Keep unavailable destinations as native disabled buttons. Replace a disabled button with a labeled link only when the destination is public and ready.
+The main game cards in `index.html` have independent web and Steam actions, with a GitHub source link underneath. Keep unavailable destinations as native disabled buttons. Replace a disabled button with a labeled link only when the destination is public and ready.
 
 - **All or Nothing:** browser release at `https://allornothing.app/`; Steam app `4537590`. Keep the existing web address until a migration is agreed.
 - **Math Marsh:** browser release at `https://mathmarsh.deegeegames.com/`. Public unreleased Steam listing at `https://store.steampowered.com/app/4927380/Math_Marsh/`, advertised as “Wishlist on Steam”. Math Marsh is the first card in the collection.
 - **Starward Tide:** in development, playable in the browser at `https://starwardtide.deegeegames.com/`. Source: `https://github.com/DeeGeeGames/starward-tide`. No Steam destination is advertised.
 
 When a web game launches, replace “Web coming soon” with the same browser icon and “Play now” link as All or Nothing. For a public unreleased Steam listing, use the Steam logo and “Wishlist on Steam”; for a released game, use “View on Steam”.
+
+## Prototypes and experiments
+
+The separate “Prototypes & experiments” section follows the main game collection. Amber labels, a work-in-progress note, and “Try prototype” actions identify unfinished projects. Its cards are static HTML and remain discoverable without JavaScript. Artwork is bundled locally and lazy-loaded.
+
+The playground at [experiments.deegeegames.com](https://experiments.deegeegames.com/) continues to host the games. The homepage links directly to Gateward (`/games/gateward/`), Dreadwake (`/games/dreadwake/`), Iron Wake (`/games/iron-wake/`), and Power Up (`/games/power-up/`) on that domain. Keep these entries aligned with the playground catalog when projects are added, renamed, or removed. Gateward uses the approved schematic illustration; the other cards use published prototype artwork.
 
 ## Artwork and credits
 

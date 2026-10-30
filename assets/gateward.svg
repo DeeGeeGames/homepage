@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" color="#e9c185" viewBox="0 0 640 360" role="img" aria-label="Illustrative schematic of Gateward's moving fortress">
+<defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0v32" fill="none" stroke="currentColor" stroke-opacity=".12"/></pattern><linearGradient id="hull"><stop stop-color="currentColor" stop-opacity=".22"/><stop offset="1" stop-color="currentColor" stop-opacity=".04"/></linearGradient></defs>
+<rect width="640" height="360" fill="url(#grid)"/>
+<g fill="none" stroke="currentColor"><ellipse cx="320" cy="177" rx="216" ry="112" stroke-opacity=".15" stroke-dasharray="4 7"/><path d="M63 177h514M320 42v260" stroke-opacity=".2" stroke-dasharray="3 7"/>
+<path d="M320 60l27 43 11 30 57 15v80l-53-9-14 54h-56l-14-54-53 9v-80l57-15 11-30z" stroke-width="2" fill="url(#hull)"/>
+<path d="M320 82v170M287 151h66v66h-66zM300 226h40v36h-40" stroke-opacity=".5"/>
+<g stroke-width="3"><path d="M256 148v-33m-10 22h20M384 148v-33m-10 22h20M256 204v-31m-10 20h20M384 204v-31m-10 20h20"/>
+<path d="M300 276v18m20-18v25m20-25v18" stroke-opacity=".7"/></g>
+<g stroke-opacity=".6"><path d="m174 143 12 23h-24zM466 196l12 23h-24zM204 233l9 18h-18z"/><path d="M135 109h53M452 89h58M423 264h66" stroke-dasharray="3 5"/></g></g>
+<g fill="currentColor" font-family="monospace" font-size="11" letter-spacing="3"><text x="28" y="325">ARK–07 / MOVING FORTRESS</text><text x="460" y="325" font-size="9" letter-spacing="1">ILLUSTRATION</text></g></svg>
