@@ -161,7 +161,7 @@ h1 span {
 	object-fit: cover;
 }
 
-.galaxy-art {
+.starward-tide-art {
 	object-position: 35% center;
 }
 
@@ -223,11 +223,6 @@ h1 span {
 	color: #b4afc3;
 	font-size: 14px;
 	line-height: 1.7;
-}
-
-.working-title {
-	color: #aaa3ba;
-	font-size: 12px;
 }
 
 .game-actions {
