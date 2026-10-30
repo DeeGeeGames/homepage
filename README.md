@@ -45,7 +45,7 @@ Each card in `index.html` has independent web and Steam actions, with a GitHub s
 
 - **All or Nothing:** browser release at `https://allornothing.app/`; Steam app `4537590`. Keep the existing web address until a migration is agreed.
 - **Math Marsh:** browser release at `https://mathmarsh.deegeegames.com/`. Public unreleased Steam listing at `https://store.steampowered.com/app/4927380/Math_Marsh/`, advertised as “Wishlist on Steam”. Math Marsh is the first card in the collection.
-- **Galaxy Conquest:** working title, in development. No public web or Steam destination is advertised. The source repository currently belongs to `david0178418`.
+- **Starward Tide:** in development, playable in the browser at `https://starwardtide.deegeegames.com/`. Source: `https://github.com/DeeGeeGames/starward-tide`. No Steam destination is advertised.
 
 When a web game launches, replace “Web coming soon” with the same browser icon and “Play now” link as All or Nothing. For a public unreleased Steam listing, use the Steam logo and “Wishlist on Steam”; for a released game, use “View on Steam”.
 
