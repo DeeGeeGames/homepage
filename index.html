@@ -2,11 +2,12 @@
 <html lang="en">
 	<head>
 		<script type="module" src="./analytics.js"></script>
+		<script type="module" src="./game-dial.js"></script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>DeeGee Games — Games &amp; experiments</title>
 		<meta name="description" content="Games and prototypes by DeeGee Games, with browser builds, Steam pages, and source code.">
-		<meta name="theme-color" content="#111119">
+		<meta name="theme-color" content="#0b1112">
 		<meta name="color-scheme" content="dark">
 		<link rel="canonical" href="https://deegeegames.com/">
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -21,198 +22,239 @@
 		<meta name="twitter:card" content="summary_large_image">
 	</head>
 	<body>
-		<a class="skip-link" href="#games">Skip to games</a>
-		<div class="site">
-			<header class="site-header">
-				<a class="brand" href="./" aria-label="DeeGee Games home">
-					<img src="./assets/deegee-games.svg" alt="DeeGee Games" width="2985" height="960">
+		<a class="skip" href="#games">Skip to games</a>
+		<main class="arcade" id="arcade">
+			<header class="topbar">
+				<a class="brand-link" href="./" aria-label="DeeGee Games home">
+					<img class="brand" src="./assets/deegee-games.svg" alt="DeeGee Games" width="2985" height="960">
 				</a>
-				<nav class="site-nav" aria-label="Page sections">
-					<a href="#games">Games</a>
-					<a class="experiments-nav" href="#experiments">
-						<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M9 3h6M10 3v6l-6 10a1.4 1.4 0 0 0 1.2 2h13.6a1.4 1.4 0 0 0 1.2-2L14 9V3M7 15h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-						<span>Experiments</span>
-					</a>
-				</nav>
+				<div class="top-label">
+					<strong>Select a game</strong>
+					<br>4 games / 4 prototypes</div>
 			</header>
-
-			<main>
-				<div class="intro">
-					<h1>Games &amp;<br><span>experiments</span></h1>
-					<p class="intro-description">Games and prototypes by DeeGee Games.<br>Browser builds, Steam pages, and source code.</p>
+			<h1 class="screenreader">Games &amp; experiments by DeeGee Games</h1>
+			<nav class="catalog-index" aria-label="Jump to a game">
+				<a href="#math-marsh-title">Math Marsh</a>
+				<a href="#all-or-nothing-title">All or Nothing</a>
+				<a href="#starward-tide-title">Starward Tide</a>
+				<a href="#reactionator-title">Reactionator</a>
+				<a href="#gateward-title">Gateward <span>Prototype</span>
+				</a>
+				<a href="#dreadwake-title">Dreadwake <span>Prototype</span>
+				</a>
+				<a href="#iron-wake-title">Iron Wake <span>Prototype</span>
+				</a>
+				<a href="#power-up-title">Power Up <span>Prototype</span>
+				</a>
+			</nav>
+			<div class="controls" id="dial-controls" hidden>
+				<p class="browse-title">The arcade dial</p>
+				<div class="stepper">
+					<button type="button" id="prev" aria-label="Previous game">↑</button>
+					<p class="count" aria-hidden="true">
+						<b id="position">01</b> / 08</p>
+					<button type="button" id="next" aria-label="Next game">↓</button>
 				</div>
-
-				<section class="collection" id="games" aria-labelledby="games-heading" tabindex="-1">
-					<div class="collection-heading">
-						<h2 id="games-heading">Games</h2>
-					</div>
-					<div class="game-grid">
-						<article class="game-card" aria-labelledby="math-marsh-title">
-							<img class="game-art" src="./assets/math-marsh.webp" alt="Math Marsh: a fly, frog, lizard, and spider among numbered lily pads" width="1100" height="513" fetchpriority="high">
-							<div class="game-meta">
-								<p class="status status-live">Available now</p>
-								<p class="genre">Math / Learning</p>
-							</div>
-							<h3 id="math-marsh-title">Math Marsh</h3>
-							<p class="game-description">An arithmetic game set in a marsh.</p>
-							<div class="game-actions">
-								<a class="action action-primary" href="https://mathmarsh.deegeegames.com/" target="_blank" rel="noopener noreferrer" aria-label="Play in browser — Math Marsh (opens in a new tab)">
-									<svg class="platform-icon browser-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect x="2.5" y="3.5" width="19" height="17" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M3 8h18" stroke="currentColor" stroke-width="1.7"/><circle cx="6" cy="5.8" r=".8" fill="currentColor"/><circle cx="9" cy="5.8" r=".8" fill="currentColor"/><path d="m10 11 6 3.5-6 3.5z" fill="currentColor"/></svg>
-									<span>Play in browser</span>
-								</a>
-								<a class="action action-steam" href="https://store.steampowered.com/app/4927380/Math_Marsh/" target="_blank" rel="noopener noreferrer" aria-label="View on Steam — Math Marsh (opens in a new tab)">
-									<img class="platform-icon" src="./assets/steam.svg" alt="" width="20" height="20">
-									<span>View on Steam</span>
-								</a>
-							</div>
-							<a class="source-link" href="https://github.com/DeeGeeGames/math-marsh" target="_blank" rel="noopener noreferrer" aria-label="Math Marsh source code on GitHub (opens in a new tab)">
-								<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8.7 6.3-5.7 5.7 5.7 5.7 1.4-1.4-4.3-4.3 4.3-4.3zm6.6 0-1.4 1.4 4.3 4.3-4.3 4.3 1.4 1.4 5.7-5.7zM13 4l-4 16h2l4-16z"/></svg>
-								<span>Source code <span aria-hidden="true">↗</span></span>
-							</a>
-						</article>
-
-						<article class="game-card" aria-labelledby="all-or-nothing-title">
-							<img class="game-art" src="./assets/all-or-nothing.jpg" alt="All or Nothing: three geometric pattern cards beside the game title" width="460" height="215">
-							<div class="game-meta">
-								<p class="status status-live">Available now</p>
-								<p class="genre">Logic / Cards</p>
+				<div class="jump">
+					<label for="jump">Jump to a game</label>
+					<select id="jump"></select>
+				</div>
+			</div>
+			<div class="layout">
+				<nav class="wheel" id="wheel" aria-label="Choose a game" hidden>
+					<div class="wheel-track"></div>
+					<p class="wheel-note">↑ ↓ Turn the dial · Tab for actions</p>
+				</nav>
+				<div class="stage" id="games" tabindex="-1">
+					<section class="catalog-group" aria-labelledby="games-heading">
+						<p class="group-title" id="games-heading">Games</p>
+						<article class="game-panel" data-kind="game" data-accent="#c9ff80" aria-labelledby="math-marsh-title">
+							<figure class="art">
+								<img src="./assets/math-marsh.webp" alt="Math Marsh: a fly, frog, lizard, and spider among numbered lily pads" width="1100" height="513" draggable="false" decoding="async" fetchpriority="high">
+								<div aria-hidden="true" class="frame-corner"></div>
+								<figcaption>Published banner</figcaption>
+							</figure>
+							<div class="details">
+								<p class="meta">
+									<span class="status">Available now</span>
+									<span>Math / Learning</span>
+								</p>
+								<h2 class="game-title" id="math-marsh-title" tabindex="-1">Math Marsh</h2>
+								<p class="description">An arithmetic game set in a marsh.</p>
+								<div class="actions">
+									<a class="launch" href="https://mathmarsh.deegeegames.com/" target="_blank" rel="noopener noreferrer" aria-label="Math Marsh: Play in browser (opens in new tab)">
+										<span aria-hidden="true">▶</span> Play in browser <span aria-hidden="true">↗</span>
+									</a>
+									<a class="secondary" href="https://store.steampowered.com/app/4927380/Math_Marsh/" target="_blank" rel="noopener noreferrer" aria-label="View Math Marsh on Steam (opens in new tab)">View on Steam ↗</a>
+									<a class="source" href="https://github.com/DeeGeeGames/math-marsh" target="_blank" rel="noopener noreferrer" aria-label="Math Marsh source code (opens in new tab)">Source code ↗</a>
 								</div>
-							<h3 id="all-or-nothing-title">All or Nothing</h3>
-							<p class="game-description">A card game about logic and pattern matching.</p>
-							<div class="game-actions">
-								<a class="action action-primary" href="https://allornothing.app/" target="_blank" rel="noopener noreferrer" aria-label="Play in browser — All or Nothing (opens in a new tab)">
-									<svg class="platform-icon browser-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect x="2.5" y="3.5" width="19" height="17" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M3 8h18" stroke="currentColor" stroke-width="1.7"/><circle cx="6" cy="5.8" r=".8" fill="currentColor"/><circle cx="9" cy="5.8" r=".8" fill="currentColor"/><path d="m10 11 6 3.5-6 3.5z" fill="currentColor"/></svg>
-									<span>Play in browser</span>
-								</a>
-								<a class="action action-steam" href="https://store.steampowered.com/app/4537590/" target="_blank" rel="noopener noreferrer" aria-label="View on Steam — All or Nothing (opens in a new tab)">
-									<img class="platform-icon" src="./assets/steam.svg" alt="" width="20" height="20">
-									<span>View on Steam</span>
-								</a>
 							</div>
-							<a class="source-link" href="https://github.com/DeeGeeGames/all-or-nothing" target="_blank" rel="noopener noreferrer" aria-label="All or Nothing source code on GitHub (opens in a new tab)">
-								<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8.7 6.3-5.7 5.7 5.7 5.7 1.4-1.4-4.3-4.3 4.3-4.3zm6.6 0-1.4 1.4 4.3 4.3-4.3 4.3 1.4 1.4 5.7-5.7zM13 4l-4 16h2l4-16z"/></svg>
-								<span>Source code <span aria-hidden="true">↗</span></span>
-							</a>
 						</article>
-
-						<article class="game-card" aria-labelledby="starward-tide-title">
-							<img class="game-art starward-tide-art" src="./assets/starward-tide.webp" alt="Starward Tide development screenshot showing a carrier and fleets among planets" width="1100" height="764">
-							<div class="game-meta">
-								<p class="status status-development">In development</p>
-								<p class="genre">Strategy</p>
+						<article class="game-panel" data-kind="game" data-accent="#ffaf81" aria-labelledby="all-or-nothing-title">
+							<figure class="art">
+								<img src="./assets/all-or-nothing.jpg" alt="All or Nothing: geometric cards beside the game title" width="460" height="215" draggable="false" decoding="async" loading="lazy">
+								<div aria-hidden="true" class="frame-corner"></div>
+								<figcaption>Published banner</figcaption>
+							</figure>
+							<div class="details">
+								<p class="meta">
+									<span class="status">Available now</span>
+									<span>Logic / Cards</span>
+								</p>
+								<h2 class="game-title" id="all-or-nothing-title" tabindex="-1">All or Nothing</h2>
+								<p class="description">A card game about logic and pattern matching.</p>
+								<div class="actions">
+									<a class="launch" href="https://allornothing.app/" target="_blank" rel="noopener noreferrer" aria-label="All or Nothing: Play in browser (opens in new tab)">
+										<span aria-hidden="true">▶</span> Play in browser <span aria-hidden="true">↗</span>
+									</a>
+									<a class="secondary" href="https://store.steampowered.com/app/4537590/" target="_blank" rel="noopener noreferrer" aria-label="View All or Nothing on Steam (opens in new tab)">View on Steam ↗</a>
+									<a class="source" href="https://github.com/DeeGeeGames/all-or-nothing" target="_blank" rel="noopener noreferrer" aria-label="All or Nothing source code (opens in new tab)">Source code ↗</a>
+								</div>
 							</div>
-							<h3 id="starward-tide-title">Starward Tide</h3>
-							<p class="game-description">A space strategy game with planets, fleets, and carriers.</p>
-							<div class="game-actions">
-								<a class="action action-primary" href="https://starwardtide.deegeegames.com/" target="_blank" rel="noopener noreferrer" aria-label="Play in browser — Starward Tide (opens in a new tab)">
-									<svg class="platform-icon browser-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect x="2.5" y="3.5" width="19" height="17" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M3 8h18" stroke="currentColor" stroke-width="1.7"/><circle cx="6" cy="5.8" r=".8" fill="currentColor"/><circle cx="9" cy="5.8" r=".8" fill="currentColor"/><path d="m10 11 6 3.5-6 3.5z" fill="currentColor"/></svg>
-									<span>Play in browser</span>
-								</a>
-							</div>
-							<a class="source-link" href="https://github.com/DeeGeeGames/starward-tide" target="_blank" rel="noopener noreferrer" aria-label="Starward Tide source code on GitHub (opens in a new tab)">
-								<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8.7 6.3-5.7 5.7 5.7 5.7 1.4-1.4-4.3-4.3 4.3-4.3zm6.6 0-1.4 1.4 4.3 4.3-4.3 4.3 1.4 1.4 5.7-5.7zM13 4l-4 16h2l4-16z"/></svg>
-								<span>Source code <span aria-hidden="true">↗</span></span>
-							</a>
 						</article>
-
-						<article class="game-card" aria-labelledby="reactionator-title">
-							<img class="game-art reactionator-art" src="./assets/reactionator.webp" alt="Reactionator development screenshot showing the reaction game and player controls" width="1100" height="764">
-							<div class="game-meta">
-								<p class="status status-development">In development</p>
-								<p class="genre">Party / Reaction</p>
+						<article class="game-panel" data-kind="game" data-accent="#8bcfff" aria-labelledby="starward-tide-title">
+							<figure class="art">
+								<img src="./assets/starward-tide.webp" alt="Starward Tide development screenshot showing a carrier and fleets among planets" width="1100" height="764" draggable="false" decoding="async" loading="lazy">
+								<div aria-hidden="true" class="frame-corner"></div>
+								<figcaption>Development gameplay</figcaption>
+							</figure>
+							<div class="details">
+								<p class="meta">
+									<span class="status">In development</span>
+									<span>Strategy</span>
+								</p>
+								<h2 class="game-title" id="starward-tide-title" tabindex="-1">Starward Tide</h2>
+								<p class="description">A space strategy game with planets, fleets, and carriers.</p>
+								<div class="actions">
+									<a class="launch" href="https://starwardtide.deegeegames.com/" target="_blank" rel="noopener noreferrer" aria-label="Starward Tide: Play in browser (opens in new tab)">
+										<span aria-hidden="true">▶</span> Play in browser <span aria-hidden="true">↗</span>
+									</a>
+									<a class="source" href="https://github.com/DeeGeeGames/starward-tide" target="_blank" rel="noopener noreferrer" aria-label="Starward Tide source code (opens in new tab)">Source code ↗</a>
+								</div>
 							</div>
-							<h3 id="reactionator-title">Reactionator</h3>
-							<p class="game-description">Local multiplayer reaction challenges for 2–4 players.</p>
-							<div class="game-actions">
-								<a class="action action-primary" href="https://reactionator.deegeegames.com/" target="_blank" rel="noopener noreferrer" aria-label="Play in browser — Reactionator (opens in a new tab)">
-									<svg class="platform-icon browser-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect x="2.5" y="3.5" width="19" height="17" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M3 8h18" stroke="currentColor" stroke-width="1.7"/><circle cx="6" cy="5.8" r=".8" fill="currentColor"/><circle cx="9" cy="5.8" r=".8" fill="currentColor"/><path d="m10 11 6 3.5-6 3.5z" fill="currentColor"/></svg>
-									<span>Play in browser</span>
-								</a>
-							</div>
-							<a class="source-link" href="https://github.com/DeeGeeGames/Reactionator" target="_blank" rel="noopener noreferrer" aria-label="Reactionator source code on GitHub (opens in a new tab)">
-								<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8.7 6.3-5.7 5.7 5.7 5.7 1.4-1.4-4.3-4.3 4.3-4.3zm6.6 0-1.4 1.4 4.3 4.3-4.3 4.3 1.4 1.4 5.7-5.7zM13 4l-4 16h2l4-16z"/></svg>
-								<span>Source code <span aria-hidden="true">↗</span></span>
-							</a>
 						</article>
-					</div>
-				</section>
-
-				<section class="experiments" id="experiments" aria-labelledby="experiments-heading" tabindex="-1">
-					<p class="eyebrow">
-						<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M9 3h6M10 3v6l-6 10a1.4 1.4 0 0 0 1.2 2h13.6a1.4 1.4 0 0 0 1.2-2L14 9V3M7 15h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-						<span>The playground</span>
-					</p>
-					<div class="experiments-heading">
-						<h2 id="experiments-heading">Prototypes &amp; experiments</h2>
-						<p class="prototype-label">Work in progress</p>
-					</div>
-					<p class="experiments-description">Playable prototypes with mechanics and features still in development.</p>
-					<div class="experiment-grid">
-						<article class="experiment-card" aria-labelledby="gateward-title">
-							<div class="experiment-art">
-								<img src="./assets/gateward.svg" alt="Illustrative schematic of Gateward's moving fortress" width="640" height="360" loading="lazy">
-								<p class="prototype-label">Prototype</p>
+						<article class="game-panel" data-kind="game" data-accent="#e9a9ff" aria-labelledby="reactionator-title">
+							<figure class="art reaction-art">
+								<img src="./assets/reactionator.webp" alt="Reactionator development screenshot showing the reaction game and player controls" width="1100" height="764" draggable="false" decoding="async" loading="lazy">
+								<div aria-hidden="true" class="frame-corner"></div>
+								<button type="button" class="view-switch" id="view-switch" aria-pressed="true" hidden>Full screenshot</button>
+								<figcaption id="reaction-caption">Full shared-screen development screenshot</figcaption>
+							</figure>
+							<div class="details">
+								<p class="meta">
+									<span class="status">In development</span>
+									<span>Party / Reaction</span>
+								</p>
+								<h2 class="game-title" id="reactionator-title" tabindex="-1">Reactionator</h2>
+								<p class="description">Local multiplayer reaction challenges for 2–4 players.</p>
+								<p class="input-note">2–4 local players</p>
+								<div class="actions">
+									<a class="launch" href="https://reactionator.deegeegames.com/" target="_blank" rel="noopener noreferrer" aria-label="Reactionator: Play in browser (opens in new tab)">
+										<span aria-hidden="true">▶</span> Play in browser <span aria-hidden="true">↗</span>
+									</a>
+									<a class="source" href="https://github.com/DeeGeeGames/Reactionator" target="_blank" rel="noopener noreferrer" aria-label="Reactionator source code (opens in new tab)">Source code ↗</a>
+								</div>
 							</div>
-							<p class="genre">Capital ship defense</p>
-							<h3 id="gateward-title">Gateward</h3>
-							<p class="game-description">A moving fortress with turrets and escort wings, traveling toward Kepler Gate.</p>
-							<p class="experiment-controls">Mouse + keyboard · Touch</p>
-							<a class="action action-prototype" href="https://gateward.deegeegames.com/" target="_blank" rel="noopener noreferrer" aria-label="Try prototype — Gateward (opens in a new tab)">
-								<span>Try prototype</span><span aria-hidden="true">↗</span>
-							</a>
 						</article>
-
-						<article class="experiment-card" aria-labelledby="dreadwake-title">
-							<div class="experiment-art">
-								<img src="./assets/dreadwake.png" alt="Dreadwake prototype showing a heavy star cruiser in a tactical combat view" width="1120" height="700" loading="lazy">
-								<p class="prototype-label">Prototype</p>
+					</section>
+					<section class="catalog-group" id="experiments" aria-labelledby="experiments-heading">
+						<p class="group-title" id="experiments-heading">Prototypes &amp; experiments</p>
+						<article class="game-panel" data-kind="prototype" data-accent="#ffc875" aria-labelledby="gateward-title">
+							<figure class="art">
+								<img src="./assets/gateward.svg" alt="Illustrative schematic of Gateward’s moving fortress" width="640" height="360" draggable="false" decoding="async" loading="lazy">
+								<div aria-hidden="true" class="frame-corner"></div>
+								<figcaption>Schematic illustration</figcaption>
+							</figure>
+							<div class="details">
+								<p class="meta">
+									<span class="status">Prototype</span>
+									<span>Capital ship defense</span>
+								</p>
+								<h2 class="game-title" id="gateward-title" tabindex="-1">Gateward</h2>
+								<p class="description">A moving fortress with turrets and escort wings, traveling toward Kepler Gate.</p>
+								<p class="prototype-note">Playable work in progress. Mechanics and features may change.</p>
+								<p class="input-note">Mouse + keyboard · Touch</p>
+								<div class="actions">
+									<a class="launch" href="https://gateward.deegeegames.com/" target="_blank" rel="noopener noreferrer" aria-label="Gateward: Try prototype (opens in new tab)">
+										<span aria-hidden="true">▶</span> Try prototype <span aria-hidden="true">↗</span>
+									</a>
+								</div>
 							</div>
-							<p class="genre">Starship combat</p>
-							<h3 id="dreadwake-title">Dreadwake</h3>
-							<p class="game-description">Star cruiser combat with rail broadsides, torpedoes, and point defense.</p>
-							<p class="experiment-controls">Keyboard · Touch</p>
-							<a class="action action-prototype" href="https://experiments.deegeegames.com/games/dreadwake/" target="_blank" rel="noopener noreferrer" aria-label="Try prototype — Dreadwake (opens in a new tab)">
-								<span>Try prototype</span><span aria-hidden="true">↗</span>
-							</a>
 						</article>
-
-						<article class="experiment-card" aria-labelledby="iron-wake-title">
-							<div class="experiment-art">
-								<img src="./assets/iron-wake.webp" alt="Iron Wake prototype showing an armored mech defending a relay on an isometric battlefield" width="1100" height="619" loading="lazy">
-								<p class="prototype-label">Prototype</p>
+						<article class="game-panel" data-kind="prototype" data-accent="#8cf4ef" aria-labelledby="dreadwake-title">
+							<figure class="art">
+								<img src="./assets/dreadwake.png" alt="Dreadwake prototype showing a heavy star cruiser in tactical combat" width="1120" height="700" draggable="false" decoding="async" loading="lazy">
+								<div aria-hidden="true" class="frame-corner"></div>
+								<figcaption>Published prototype preview</figcaption>
+							</figure>
+							<div class="details">
+								<p class="meta">
+									<span class="status">Prototype</span>
+									<span>Starship combat</span>
+								</p>
+								<h2 class="game-title" id="dreadwake-title" tabindex="-1">Dreadwake</h2>
+								<p class="description">Star cruiser combat with rail broadsides, torpedoes, and point defense.</p>
+								<p class="prototype-note">Playable work in progress. Mechanics and features may change.</p>
+								<p class="input-note">Keyboard · Touch</p>
+								<div class="actions">
+									<a class="launch" href="https://experiments.deegeegames.com/games/dreadwake/" target="_blank" rel="noopener noreferrer" aria-label="Dreadwake: Try prototype (opens in new tab)">
+										<span aria-hidden="true">▶</span> Try prototype <span aria-hidden="true">↗</span>
+									</a>
+								</div>
 							</div>
-							<p class="genre">Isometric mech defense</p>
-							<h3 id="iron-wake-title">Iron Wake</h3>
-							<p class="game-description">Mech defense with heat management, salvage, and three waves of attacks on a relay.</p>
-							<p class="experiment-controls">Keyboard + mouse · Touch</p>
-							<a class="action action-prototype" href="https://experiments.deegeegames.com/games/iron-wake/" target="_blank" rel="noopener noreferrer" aria-label="Try prototype — Iron Wake (opens in a new tab)">
-								<span>Try prototype</span><span aria-hidden="true">↗</span>
-							</a>
 						</article>
-
-						<article class="experiment-card" aria-labelledby="power-up-title">
-							<div class="experiment-art">
-								<img src="./assets/power-up.webp" alt="Power Up prototype showing a cyan fighter facing a swarm above a floating platform" width="1100" height="619" loading="lazy">
-								<p class="prototype-label">Prototype</p>
+						<article class="game-panel" data-kind="prototype" data-accent="#ffb684" aria-labelledby="iron-wake-title">
+							<figure class="art">
+								<img src="./assets/iron-wake.webp" alt="Iron Wake prototype showing an armored mech defending a relay" width="1100" height="619" draggable="false" decoding="async" loading="lazy">
+								<div aria-hidden="true" class="frame-corner"></div>
+								<figcaption>Prototype gameplay</figcaption>
+							</figure>
+							<div class="details">
+								<p class="meta">
+									<span class="status">Prototype</span>
+									<span>Isometric mech defense</span>
+								</p>
+								<h2 class="game-title" id="iron-wake-title" tabindex="-1">Iron Wake</h2>
+								<p class="description">Mech defense with heat management, salvage, and three waves of attacks on a relay.</p>
+								<p class="prototype-note">Playable work in progress. Mechanics and features may change.</p>
+								<p class="input-note">Keyboard + mouse · Touch</p>
+								<div class="actions">
+									<a class="launch" href="https://experiments.deegeegames.com/games/iron-wake/" target="_blank" rel="noopener noreferrer" aria-label="Iron Wake: Try prototype (opens in new tab)">
+										<span aria-hidden="true">▶</span> Try prototype <span aria-hidden="true">↗</span>
+									</a>
+								</div>
 							</div>
-							<p class="genre">Action sandbox</p>
-							<h3 id="power-up-title">Power Up</h3>
-							<p class="game-description">A platform combat sandbox with melee combos, airborne movement, and homing shots.</p>
-							<p class="experiment-controls">Keyboard · Gamepad · Touch</p>
-							<a class="action action-prototype" href="https://experiments.deegeegames.com/games/power-up/" target="_blank" rel="noopener noreferrer" aria-label="Try prototype — Power Up (opens in a new tab)">
-								<span>Try prototype</span><span aria-hidden="true">↗</span>
-							</a>
 						</article>
-					</div>
-					<div class="experiments-footer">
-						<a href="https://experiments.deegeegames.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the playground (opens in a new tab)">Visit the playground <span aria-hidden="true">↗</span></a>
-					</div>
-				</section>
-			</main>
-
-			<footer class="site-footer">
-				<p>© DeeGee Games</p>
+						<article class="game-panel" data-kind="prototype" data-accent="#a9a1ff" aria-labelledby="power-up-title">
+							<figure class="art">
+								<img src="./assets/power-up.webp" alt="Power Up prototype showing a cyan fighter facing a swarm" width="1100" height="619" draggable="false" decoding="async" loading="lazy">
+								<div aria-hidden="true" class="frame-corner"></div>
+								<figcaption>Prototype gameplay</figcaption>
+							</figure>
+							<div class="details">
+								<p class="meta">
+									<span class="status">Prototype</span>
+									<span>Action sandbox</span>
+								</p>
+								<h2 class="game-title" id="power-up-title" tabindex="-1">Power Up</h2>
+								<p class="description">A platform combat sandbox with melee combos, airborne movement, and homing shots.</p>
+								<p class="prototype-note">Playable work in progress. Mechanics and features may change.</p>
+								<p class="input-note">Keyboard · Gamepad · Touch</p>
+								<div class="actions">
+									<a class="launch" href="https://experiments.deegeegames.com/games/power-up/" target="_blank" rel="noopener noreferrer" aria-label="Power Up: Try prototype (opens in new tab)">
+										<span aria-hidden="true">▶</span> Try prototype <span aria-hidden="true">↗</span>
+									</a>
+								</div>
+							</div>
+						</article>
+					</section>
+				</div>
+			</div>
+			<footer class="footer">
+				<p>Browser builds, Steam pages, and source code.<br>Game and source links open in a new tab.</p>
+				<a href="https://experiments.deegeegames.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the playground (opens in a new tab)">Visit the playground ↗</a>
 			</footer>
-		</div>
+			<p class="screenreader" id="announcement" aria-live="polite" aria-atomic="true"></p>
+		</main>
 	</body>
 </html>

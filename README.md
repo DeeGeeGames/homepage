@@ -1,6 +1,6 @@
 # DeeGee Games
 
-The thumbnail-based home of DeeGee Games at [deegeegames.com](https://deegeegames.com/). Static HTML and CSS, built with Vite, with optional Google Analytics. The page remains usable without JavaScript; fonts and images are bundled locally.
+The game-selection home of DeeGee Games at [deegeegames.com](https://deegeegames.com/). Static HTML and CSS with a small progressive-enhancement module, built with Vite, and optional Google Analytics. Artwork is bundled locally; typography uses system fonts. All games and their destinations remain available without JavaScript.
 
 ## Development
 
@@ -20,6 +20,14 @@ bun run preview
 ```
 
 `check` validates the HTML; `build` writes the deployable site to `dist/`. There is no TypeScript to typecheck. Run both checks before submitting a pull request. GitHub Actions runs both checks on pull requests and pushes to `master`.
+
+## Game selection
+
+`index.html` is the source of truth for game names, statuses, artwork, and destination links. `game-dial.js` derives the wheel and jump picker from those articles, then enables the single-selection layout. If the module cannot initialize, the static catalog remains usable.
+
+Use the arrow buttons, a named selector, or a horizontal touch swipe over the artwork or dial. With a wheel item focused, arrow keys browse and Home/End select the first/last game. Tab moves into that game’s actions; Reactionator’s image toggle comes before its launch link. The site respects `prefers-reduced-motion` automatically and has no motion settings. It does not autoplay or poll gamepads.
+
+Existing `#games`, `#experiments`, and game-heading fragments remain supported. Selection replaces the current fragment rather than adding a browser-history entry for every step. Browser, Steam, and source links remain ordinary links opening in a new tab.
 
 ## Analytics
 
@@ -41,10 +49,10 @@ Namecheap BasicDNS hosts the zone. The apex (`@`) uses GitHub Pages A records `1
 
 ## Game availability
 
-The main game cards in `index.html` have independent web and Steam actions, with a GitHub source link underneath. Keep unavailable destinations as native disabled buttons. Replace a disabled button with a labeled link only when the destination is public and ready.
+The main game entries in `index.html` have independent web and Steam actions, with a GitHub source link underneath. Keep unavailable destinations as native disabled buttons. Replace a disabled button with a labeled link only when the destination is public and ready.
 
 - **All or Nothing:** browser release at `https://allornothing.app/`; Steam app `4537590`. Keep the existing web address until a migration is agreed.
-- **Math Marsh:** browser release at `https://mathmarsh.deegeegames.com/`. Public unreleased Steam listing at `https://store.steampowered.com/app/4927380/Math_Marsh/`, linked as “View on Steam”. Math Marsh is the first card in the collection.
+- **Math Marsh:** browser release at `https://mathmarsh.deegeegames.com/`. Public unreleased Steam listing at `https://store.steampowered.com/app/4927380/Math_Marsh/`, linked as “View on Steam”. Math Marsh is the first entry and the default selection.
 - **Starward Tide:** in development, playable in the browser at `https://starwardtide.deegeegames.com/`. Source: `https://github.com/DeeGeeGames/starward-tide`. No Steam destination is advertised.
 
 - **Reactionator:** in development, follows Starward Tide. Browser: `https://reactionator.deegeegames.com/`. Source: `https://github.com/DeeGeeGames/Reactionator`. Local multiplayer reaction challenges for 2–4 players.
@@ -53,10 +61,10 @@ When a web game launches, replace “Web coming soon” with the same browser ic
 
 ## Prototypes and experiments
 
-The separate “Prototypes & experiments” section follows the main game collection. Amber labels, a work-in-progress note, and “Try prototype” actions identify unfinished projects. Its cards are static HTML and remain discoverable without JavaScript. Artwork is bundled locally and lazy-loaded.
+The four prototypes follow the four main games in the dial. Explicit prototype labels, work-in-progress notes, input hints, and “Try prototype” actions identify unfinished projects. Without JavaScript they remain a separate “Prototypes & experiments” section. Non-initial artwork is lazy-loaded.
 
-The playground at [experiments.deegeegames.com](https://experiments.deegeegames.com/) continues to host the games. The homepage links directly to Gateward (`/games/gateward/`), Dreadwake (`/games/dreadwake/`), Iron Wake (`/games/iron-wake/`), and Power Up (`/games/power-up/`) on that domain. Keep these entries aligned with the playground catalog when projects are added, renamed, or removed. Gateward uses the approved schematic illustration; the other cards use published prototype artwork.
+Gateward has its own destination at [gateward.deegeegames.com](https://gateward.deegeegames.com/). The playground at [experiments.deegeegames.com](https://experiments.deegeegames.com/) hosts Dreadwake (`/games/dreadwake/`), Iron Wake (`/games/iron-wake/`), and Power Up (`/games/power-up/`). Keep these entries aligned with the playground catalog when projects are added, renamed, or removed. Gateward uses the approved schematic illustration; the other cards use published prototype artwork.
 
 ## Artwork and credits
 
-All artwork is bundled locally. See [assets/README.md](assets/README.md) for provenance and retained notices. Layout follows the approved dark game-shelf mockup with full-width stacked platform buttons, smaller source links, and one column on narrow screens.
+All artwork is bundled locally. See [assets/README.md](assets/README.md) for provenance and retained notices. Layout follows the approved Arcade Dial direction: a moving named wheel and large artwork on desktop, with a horizontal selector, arrows, and named picker on phones. Reactionator offers a labeled challenge-detail crop and a full screenshot toggle; neither represents new footage.
