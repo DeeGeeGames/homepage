@@ -65,7 +65,7 @@ When a web game launches, replace “Web coming soon” with the same browser ic
 
 The four prototypes follow the four main games in the selector. Explicit prototype labels, work-in-progress notes, input hints, and “Try prototype” actions identify unfinished projects. Without JavaScript they remain a separate “Prototypes & experiments” section. Non-initial artwork in the fallback catalog is lazy-loaded.
 
-Gateward has its own destination at [gateward.deegeegames.com](https://gateward.deegeegames.com/). The playground at [experiments.deegeegames.com](https://experiments.deegeegames.com/) hosts Dreadwake (`/games/dreadwake/`), Iron Wake (`/games/iron-wake/`), and Power Up (`/games/power-up/`). Keep these entries aligned with the playground catalog when projects are added, renamed, or removed. Gateward uses the approved schematic illustration; the other cards use published prototype artwork.
+Gateward has its own destination at [gateward.deegeegames.com](https://gateward.deegeegames.com/). Heavy Rig (formerly Iron Wake) is at [heavyrig.deegeegames.com](https://heavyrig.deegeegames.com/). The playground at [experiments.deegeegames.com](https://experiments.deegeegames.com/) hosts Dreadwake (`/games/dreadwake/`) and Power Up (`/games/power-up/`). Keep these entries aligned with the playground catalog when projects are added, renamed, or removed. Gateward uses the approved schematic illustration; the other cards use published prototype artwork.
 
 ## Artwork and credits
 
