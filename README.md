@@ -23,11 +23,13 @@ bun run preview
 
 ## Game selection
 
-`index.html` is the source of truth for game names, statuses, artwork, and destination links. `game-dial.js` derives the wheel and jump picker from those articles, then enables the single-selection layout. If the module cannot initialize, the static catalog remains usable.
+`index.html` remains the source of truth for names, statuses, artwork, and destinations. `game-select.js` derives the console selector and Details screen from those articles. If JavaScript is unavailable or initialization fails, the static catalog remains usable.
 
-Use the arrow buttons, a named selector, or a horizontal touch swipe over the artwork or dial. With a wheel item focused, arrow keys browse and Home/End select the first/last game. Tab moves into that game’s actions; Reactionator’s image toggle comes before its launch link. The site respects `prefers-reduced-motion` automatically and has no motion settings. It does not autoplay or poll gamepads.
+The enhanced interface fills the viewport without document scrolling. Desktop shows all eight games; phones show two larger tiles per bank. Select with the tiles, arrow buttons, arrow keys, Home/End, or a horizontal swipe over the scene. Tab reaches actions; Enter on the selected tile launches its game. Details is a native modal with Escape/Back and focus restoration. Keyboard focus has a white ring distinct from the selected game's accent.
 
-Existing `#games`, `#experiments`, and game-heading fragments remain supported. Selection replaces the current fragment rather than adding a browser-history entry for every step. Browser, Steam, and source links remain ordinary links opening in a new tab.
+Background changes crossfade over 360 ms; reduced motion switches immediately. Rapid selection cancels obsolete transitions; during a crossfade, a failed artwork load keeps the previous image. Fullscreen is optional and appears only where supported. There is no autoplay audio, video, or gamepad polling.
+
+Existing `#games`, `#experiments`, `#arcade`, and game-heading fragments remain supported. Selection replaces the fragment instead of adding browser-history entries. Browser, Steam, source, and playground links retain their existing destinations and open in a new tab. The no-JavaScript catalog uses ordinary document scrolling so all content remains accessible.
 
 ## Analytics
 
@@ -61,10 +63,10 @@ When a web game launches, replace “Web coming soon” with the same browser ic
 
 ## Prototypes and experiments
 
-The four prototypes follow the four main games in the dial. Explicit prototype labels, work-in-progress notes, input hints, and “Try prototype” actions identify unfinished projects. Without JavaScript they remain a separate “Prototypes & experiments” section. Non-initial artwork is lazy-loaded.
+The four prototypes follow the four main games in the selector. Explicit prototype labels, work-in-progress notes, input hints, and “Try prototype” actions identify unfinished projects. Without JavaScript they remain a separate “Prototypes & experiments” section. Non-initial artwork in the fallback catalog is lazy-loaded.
 
 Gateward has its own destination at [gateward.deegeegames.com](https://gateward.deegeegames.com/). The playground at [experiments.deegeegames.com](https://experiments.deegeegames.com/) hosts Dreadwake (`/games/dreadwake/`), Iron Wake (`/games/iron-wake/`), and Power Up (`/games/power-up/`). Keep these entries aligned with the playground catalog when projects are added, renamed, or removed. Gateward uses the approved schematic illustration; the other cards use published prototype artwork.
 
 ## Artwork and credits
 
-All artwork is bundled locally. See [assets/README.md](assets/README.md) for provenance and retained notices. Layout follows the approved Arcade Dial direction: a moving named wheel and large artwork on desktop, with a horizontal selector, arrows, and named picker on phones. Reactionator offers a labeled challenge-detail crop and a full screenshot toggle; neither represents new footage.
+All artwork is bundled locally. See [assets/README.md](assets/README.md) for provenance and retained notices. Layout follows the approved cinematic console direction, with the official logo, per-game imagery and accents, a persistent selector, and a separate Details screen. Interface-heavy gameplay captures use a contained preview. Existing imagery and its provenance are retained; no new footage is implied.
