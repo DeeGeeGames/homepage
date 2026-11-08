@@ -31,15 +31,32 @@
 				<button class="fullscreen" type="button" hidden>Fullscreen</button>
 				<p class="eyebrow">Select your next world</p>
 			</header>
-			<section class="stage" aria-labelledby="selected-title">
-				<p class="status"></p>
-				<h1 id="selected-title">Math Marsh</h1>
-				<p class="description"></p>
-				<div class="actions">
-					<a class="launch" href="https://mathmarsh.deegeegames.com/" target="_blank" rel="noopener noreferrer">Play ↗</a>
-					<button class="more" type="button">Details</button>
-				</div>
-			</section>
+			<div class="feature">
+				<section class="stage" aria-labelledby="selected-title">
+					<p class="status"></p>
+					<h1 id="selected-title">Math Marsh</h1>
+					<p class="description"></p>
+					<div class="actions">
+						<a class="launch" href="https://mathmarsh.deegeegames.com/" target="_blank" rel="noopener noreferrer">Play ↗</a>
+						<button class="more" type="button">Details</button>
+					</div>
+				</section>
+				<section class="gallery" aria-label="Gameplay screenshots" hidden>
+					<div class="gallery-frame">
+						<img class="gallery-image" src="./assets/math-marsh.webp" alt="" decoding="async">
+					</div>
+					<div class="gallery-bar">
+						<p class="gallery-caption"></p>
+						<div class="gallery-controls">
+							<span class="gallery-count"></span>
+							<button class="shot-prev" type="button" aria-label="Previous screenshot">‹</button>
+							<button class="shot-pause" type="button" aria-label="Pause screenshot rotation">Ⅱ</button>
+							<button class="shot-next" type="button" aria-label="Next screenshot">›</button>
+						</div>
+					</div>
+					<div class="shots" role="group" aria-label="Choose a screenshot"></div>
+				</section>
+			</div>
 			<div class="bottom">
 				<nav class="library" aria-label="Choose a game"></nav>
 				<footer>
@@ -75,6 +92,11 @@
 						<div aria-hidden="true" class="frame-corner"></div>
 						<figcaption>Published banner</figcaption>
 					</figure>
+					<div class="screenshots">
+						<img src="./assets/screenshots/math-marsh-01.webp" alt="Addition in the marsh" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/math-marsh-02.webp" alt="Multiplication practice" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/math-marsh-03.webp" alt="Expert subtraction" width="1440" height="900" loading="lazy" decoding="async">
+					</div>
 					<div class="details">
 						<p class="meta">
 							<span class="status">Available now</span>
@@ -97,6 +119,11 @@
 						<div aria-hidden="true" class="frame-corner"></div>
 						<figcaption>Published banner</figcaption>
 					</figure>
+					<div class="screenshots">
+						<img src="./assets/screenshots/all-or-nothing-01.webp" alt="Solo card selection" width="1440" height="810" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/all-or-nothing-02.webp" alt="Multiplayer card table" width="1440" height="810" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/all-or-nothing-03.webp" alt="The Daily Board" width="1440" height="810" loading="lazy" decoding="async">
+					</div>
 					<div class="details">
 						<p class="meta">
 							<span class="status">Available now</span>
@@ -115,10 +142,15 @@
 				</article>
 				<article class="game-panel" data-kind="game" data-accent="#8bcfff" aria-labelledby="starward-tide-title">
 					<figure class="art">
-						<img src="./assets/starward-tide.webp" alt="Starward Tide development screenshot showing a carrier and fleets among planets" width="1100" height="764" draggable="false" decoding="async" loading="lazy">
+						<img src="./assets/thumbnails/starward-tide.webp" alt="Starward Tide gameplay with planets, fleets, and carriers" width="480" height="300" draggable="false" decoding="async" loading="lazy">
 						<div aria-hidden="true" class="frame-corner"></div>
 						<figcaption>Development gameplay</figcaption>
 					</figure>
+					<div class="screenshots">
+						<img src="./assets/screenshots/starward-tide-01.webp" alt="Terra production and orbital fleets" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/starward-tide-02.webp" alt="First Command star map" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/starward-tide-03.webp" alt="Carrier race" width="1440" height="900" loading="lazy" decoding="async">
+					</div>
 					<div class="details">
 						<p class="meta">
 							<span class="status">In development</span>
@@ -141,6 +173,11 @@
 						<button type="button" class="view-switch" id="view-switch" aria-pressed="true" hidden>Full screenshot</button>
 						<figcaption id="reaction-caption">Full shared-screen development screenshot</figcaption>
 					</figure>
+					<div class="screenshots">
+						<img src="./assets/screenshots/reactionator-01.webp" alt="Four players — Mouse to Cheese" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/reactionator-02.webp" alt="Four players — Matching Flag" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/reactionator-03.webp" alt="Four players — Circle among Squares" width="1440" height="900" loading="lazy" decoding="async">
+					</div>
 					<div class="details">
 						<p class="meta">
 							<span class="status">In development</span>
@@ -161,10 +198,15 @@
 			<section id="experiments" aria-labelledby="experiments-heading">
 				<h2 id="experiments-heading">Prototypes &amp; experiments</h2>			<article class="game-panel" data-kind="prototype" data-accent="#ffc875" aria-labelledby="gateward-title">
 					<figure class="art">
-						<img src="./assets/gateward.svg" alt="Illustrative schematic of Gateward’s moving fortress" width="640" height="360" draggable="false" decoding="async" loading="lazy">
+						<img src="./assets/thumbnails/gateward.webp" alt="Gateward gameplay with a capital ship and escort fleet" width="480" height="300" draggable="false" decoding="async" loading="lazy">
 						<div aria-hidden="true" class="frame-corner"></div>
-						<figcaption>Schematic illustration</figcaption>
+						<figcaption>Prototype gameplay</figcaption>
 					</figure>
+					<div class="screenshots">
+						<img src="./assets/screenshots/gateward-01.webp" alt="Convoy underway" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/gateward-02.webp" alt="Drydock and fortress construction" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/gateward-03.webp" alt="Tactical radar and escort coverage" width="1440" height="900" loading="lazy" decoding="async">
+					</div>
 					<div class="details">
 						<p class="meta">
 							<span class="status">Prototype</span>
@@ -183,10 +225,15 @@
 				</article>
 				<article class="game-panel" data-kind="prototype" data-accent="#8cf4ef" aria-labelledby="dreadwake-title">
 					<figure class="art">
-						<img src="./assets/dreadwake.png" alt="Dreadwake prototype showing a heavy star cruiser in tactical combat" width="1120" height="700" draggable="false" decoding="async" loading="lazy">
+						<img src="./assets/thumbnails/dreadwake.webp" alt="Dreadwake prototype showing a heavy star cruiser in tactical combat" width="480" height="300" draggable="false" decoding="async" loading="lazy">
 						<div aria-hidden="true" class="frame-corner"></div>
-						<figcaption>Published prototype preview</figcaption>
+						<figcaption>Prototype gameplay</figcaption>
 					</figure>
+					<div class="screenshots">
+						<img src="./assets/screenshots/dreadwake-01.webp" alt="Outer Picket — Aegis active" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/dreadwake-02.webp" alt="Incoming volley" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/dreadwake-03.webp" alt="Cruiser tactical view" width="1440" height="900" loading="lazy" decoding="async">
+					</div>
 					<div class="details">
 						<p class="meta">
 							<span class="status">Prototype</span>
@@ -205,19 +252,24 @@
 				</article>
 				<article class="game-panel" data-kind="prototype" data-accent="#ffb684" aria-labelledby="iron-wake-title">
 					<figure class="art">
-						<img src="./assets/iron-wake.webp" alt="Heavy Rig prototype showing an armored mech defending a relay" width="1100" height="619" draggable="false" decoding="async" loading="lazy">
+						<img src="./assets/thumbnails/heavy-rig.webp" alt="Heavy Rig prototype showing an armored mech defending a relay" width="480" height="300" draggable="false" decoding="async" loading="lazy">
 						<div aria-hidden="true" class="frame-corner"></div>
 						<figcaption>Prototype gameplay</figcaption>
 					</figure>
+					<div class="screenshots">
+						<img src="./assets/screenshots/heavy-rig-01.webp" alt="Garrison defense" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/heavy-rig-02.webp" alt="Kestrel in the Mech Bay" width="1440" height="900" loading="lazy" decoding="async">
+						<img src="./assets/screenshots/heavy-rig-03.webp" alt="Frontier contracts" width="1440" height="900" loading="lazy" decoding="async">
+					</div>
 					<div class="details">
 						<p class="meta">
 							<span class="status">Prototype</span>
-							<span>Isometric mech defense</span>
+							<span>Mech combat / Company management</span>
 						</p>
 						<h2 class="game-title" id="iron-wake-title" tabindex="-1">Heavy Rig</h2>
-						<p class="description">Mech defense with heat management, salvage, and three waves of attacks on a relay.</p>
+						<p class="description">Run a mercenary mech company, outfit your frames, and take contracts across the frontier.</p>
 						<p class="prototype-note">Playable work in progress. Mechanics and features may change.</p>
-						<p class="input-note">Keyboard + mouse · Touch</p>
+						<p class="input-note">Keyboard + mouse · Controller · Touch</p>
 						<div class="actions">
 							<a class="launch" href="https://heavyrig.deegeegames.com/" target="_blank" rel="noopener noreferrer" aria-label="Heavy Rig: Try prototype (opens in new tab)">
 								<span aria-hidden="true">▶</span> Try prototype <span aria-hidden="true">↗</span>
