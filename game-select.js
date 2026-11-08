@@ -30,6 +30,13 @@ const initialize = function () {
 	const input = find('.input');
 	const artNote = find('.artnote');
 	const destinations = find('.destinations');
+	const gallery = find('.gallery');
+	const galleryImage = find('.gallery-image');
+	const galleryCaption = find('.gallery-caption');
+	const galleryCount = find('.gallery-count');
+	const shots = find('.shots');
+	const pause = find('.shot-pause');
+	if (!(galleryImage instanceof HTMLImageElement)) return;
 	const games = Array.from(catalog.querySelectorAll('.game-panel')).map(function (panel) {
 		const heading = panel.querySelector('.game-title');
 		const image = panel.querySelector('.art img');
@@ -47,6 +54,10 @@ const initialize = function () {
 			description: panel.querySelector('.description')?.textContent?.trim() || '',
 			input: [panel.querySelector('.meta > span:not(.status)')?.textContent?.trim(), panel.querySelector('.input-note')?.textContent?.trim()].filter(Boolean).join(' · '),
 			artNote: panel.querySelector('figcaption')?.textContent?.trim() || '',
+			screenshots: Array.from(panel.querySelectorAll('.screenshots img')).map(function (shot) {
+				if (!(shot instanceof HTMLImageElement)) throw new Error('Invalid screenshot');
+				return { source: shot.src, caption: shot.alt };
+			}),
 		};
 	});
 	if (games.length === 0) return;
@@ -56,6 +67,72 @@ const initialize = function () {
 	let inputMode = matchMedia('(pointer: coarse)').matches ? 'touch' : 'keyboard';
 	let backgroundRevision = 0;
 	let outgoing = null;
+	let screenshot = 0;
+	let screenshotRevision = 0;
+	let rotationTimer = null;
+	let rotationPaused = false;
+	let shotButtons = [];
+	const stopRotation = function () {
+		clearTimeout(rotationTimer);
+		rotationTimer = null;
+	};
+	const scheduleRotation = function () {
+		stopRotation();
+		if (rotationPaused || document.hidden || dialog.open || games[selected].screenshots.length < 2) return;
+		rotationTimer = setTimeout(function () { showScreenshot(screenshot + 1); }, 6000);
+	};
+	const showScreenshot = function (index) {
+		const images = games[selected].screenshots;
+		if (!images.length) return;
+		screenshot = (index + images.length) % images.length;
+		const shot = images[screenshot];
+		const revision = ++screenshotRevision;
+		const candidate = new Image();
+		candidate.src = shot.source;
+		candidate.decode().then(function () {
+			if (revision !== screenshotRevision) return;
+			galleryImage.src = shot.source;
+			galleryImage.alt = shot.caption;
+			galleryImage.hidden = false;
+			galleryCaption.textContent = shot.caption;
+			galleryCount.textContent = `${String(screenshot + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
+			shotButtons.forEach(function (button, position) {
+				button.classList.toggle('selected', position === screenshot);
+				button.setAttribute('aria-pressed', String(position === screenshot));
+			});
+		}).catch(function () {
+			if (revision !== screenshotRevision) return;
+			galleryCaption.textContent = 'Screenshot unavailable. Choose another view.';
+		});
+		scheduleRotation();
+	};
+	const resetGallery = function (game) {
+		stopRotation();
+		screenshotRevision += 1;
+		screenshot = 0;
+		gallery.hidden = game.screenshots.length === 0;
+		root.dataset.gallery = String(!gallery.hidden);
+		galleryImage.hidden = true;
+		galleryCaption.textContent = '';
+		galleryCount.textContent = '';
+		gallery.setAttribute('aria-label', `${game.name} gameplay screenshots`);
+		shotButtons = game.screenshots.map(function (shot, index) {
+			const button = document.createElement('button');
+			button.type = 'button';
+			button.className = 'shot';
+			button.setAttribute('aria-label', `Screenshot ${index + 1}: ${shot.caption}`);
+			const image = document.createElement('img');
+			image.src = shot.source;
+			image.alt = '';
+			const number = document.createElement('span');
+			number.textContent = String(index + 1).padStart(2, '0');
+			button.append(image, number);
+			button.addEventListener('click', function () { showScreenshot(index); });
+			return button;
+		});
+		shots.replaceChildren(...shotButtons);
+		if (!gallery.hidden) showScreenshot(0);
+	};
 	const tiles = games.map(function (game, index) {
 		const button = document.createElement('button');
 		button.type = 'button';
@@ -124,7 +201,7 @@ const initialize = function () {
 		const changed = displayed !== selected;
 		const previous = changed && displayed >= 0 && !motion.matches ? snapshot() : null;
 		root.dataset.game = String(selected);
-		root.dataset.scene = [2, 3, 5, 6].includes(selected) ? 'screen' : 'world';
+		root.dataset.scene = [2, 3, 4, 5, 6].includes(selected) ? 'screen' : 'world';
 		root.style.setProperty('--game-accent', game.accent);
 		title.textContent = game.name;
 		status.textContent = game.prototype ? 'PLAYABLE PROTOTYPE' : `${game.state} / GAME`;
@@ -145,6 +222,7 @@ const initialize = function () {
 		bankLabel.textContent = bankSize === games.length ? 'GAMES + PROTOTYPES' : `${game.prototype ? 'PROTOTYPES' : 'GAMES'} · ${bank * bankSize + 1}–${Math.min(games.length, (bank + 1) * bankSize)}`;
 		hint();
 		if (changed) {
+			resetGallery(game);
 			detailArt.src = game.image.src;
 			detailTitle.textContent = game.name;
 			detailIndex.textContent = `GAME DETAILS / ${String(selected + 1).padStart(2, '0')}`;
@@ -175,9 +253,25 @@ const initialize = function () {
 	};
 	find('.prev').addEventListener('click', function () { select(selected - 1); });
 	find('.next').addEventListener('click', function () { select(selected + 1); });
-	details.addEventListener('click', function () { dialog.showModal(); });
+	find('.shot-prev').addEventListener('click', function () { showScreenshot(screenshot - 1); });
+	find('.shot-next').addEventListener('click', function () { showScreenshot(screenshot + 1); });
+	pause.addEventListener('click', function () {
+		rotationPaused = !rotationPaused;
+		pause.textContent = rotationPaused ? '▶' : 'Ⅱ';
+		pause.setAttribute('aria-label', `${rotationPaused ? 'Resume' : 'Pause'} screenshot rotation`);
+		scheduleRotation();
+	});
+	gallery.addEventListener('keydown', function (event) {
+		if (event.altKey || event.ctrlKey || event.metaKey || event.isComposing) return;
+		if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+		event.preventDefault();
+		const index = event.key === 'Home' ? 0 : event.key === 'End' ? games[selected].screenshots.length - 1 : screenshot + (event.key === 'ArrowRight' ? 1 : -1);
+		showScreenshot(index);
+		if (event.target instanceof Element && event.target.closest('.shots')) shotButtons[screenshot]?.focus({ preventScroll: true });
+	});
+	details.addEventListener('click', function () { stopRotation(); dialog.showModal(); });
 	close.addEventListener('click', function () { dialog.close(); });
-	dialog.addEventListener('close', function () { details.focus({ preventScroll: true }); });
+	dialog.addEventListener('close', function () { details.focus({ preventScroll: true }); scheduleRotation(); });
 	fullscreen.hidden = !document.fullscreenEnabled;
 	fullscreen.addEventListener('click', async function () {
 		try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); }
@@ -186,6 +280,7 @@ const initialize = function () {
 	document.addEventListener('fullscreenchange', function () { fullscreen.textContent = document.fullscreenElement ? 'Exit fullscreen' : 'Fullscreen'; });
 	document.addEventListener('keydown', function (event) {
 		if (dialog.open || event.altKey || event.ctrlKey || event.metaKey || event.isComposing) return;
+		if (event.target instanceof Element && event.target.closest('.gallery')) return;
 		inputMode = 'keyboard'; hint();
 		if (['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
 			event.preventDefault();
@@ -199,19 +294,24 @@ const initialize = function () {
 	root.addEventListener('pointerdown', function (event) {
 		if (event.pointerType === 'touch') { inputMode = 'touch'; hint(); }
 		if (!event.isPrimary || dialog.open || !(event.target instanceof Element) || event.target.closest('a, button, dialog')) { swipe = null; return; }
-		swipe = { id: event.pointerId, x: event.clientX, y: event.clientY };
+		swipe = { id: event.pointerId, x: event.clientX, y: event.clientY, gallery: Boolean(event.target.closest('.gallery')) };
 	});
 	root.addEventListener('pointerup', function (event) {
 		const start = swipe; swipe = null;
 		if (!start || start.id !== event.pointerId) return;
 		const dx = event.clientX - start.x;
-		if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(event.clientY - start.y) * 1.5) select(selected + (dx < 0 ? 1 : -1));
+		if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(event.clientY - start.y) * 1.5) {
+			if (start.gallery) showScreenshot(screenshot + (dx < 0 ? 1 : -1));
+			else select(selected + (dx < 0 ? 1 : -1));
+		}
 	});
 	root.addEventListener('pointercancel', function () { swipe = null; });
 	motion.addEventListener('change', function () { if (motion.matches) { resetBackground(); root.getAnimations({ subtree: true }).forEach(function (animation) { animation.cancel(); }); } });
 	window.addEventListener('resize', render);
 	window.addEventListener('hashchange', readHash);
-	window.addEventListener('pagehide', resetBackground);
+	document.addEventListener('visibilitychange', scheduleRotation);
+	window.addEventListener('pagehide', function () { stopRotation(); resetBackground(); });
+	window.addEventListener('pageshow', scheduleRotation);
 	const skip = document.querySelector('.skip');
 	skip?.addEventListener('click', function (event) { event.preventDefault(); tiles[selected]?.focus({ preventScroll: true }); });
 	catalog.hidden = true;
