@@ -25,6 +25,8 @@ jobs:
         run: bun install --frozen-lockfile
       - name: Validate HTML
         run: bun run check
+      - name: Verify wheel gestures
+        run: bun run test
       - name: Build site
         run: bun run build
         env:

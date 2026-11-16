@@ -1,6 +1,6 @@
 # DeeGee Games
 
-The game-selection home of DeeGee Games at [deegeegames.com](https://deegeegames.com/). Static HTML and CSS with a small progressive-enhancement module, built with Vite, and optional Google Analytics. Artwork is bundled locally; typography uses system fonts. All games and their destinations remain available without JavaScript.
+The game-selection home of DeeGee Games at [deegeegames.com](https://deegeegames.com/). Static HTML and CSS with a browser launcher, built with Vite, and optional Google Analytics. Artwork is bundled locally; typography uses system fonts. All games and their destinations remain available without JavaScript.
 
 ## Development
 
@@ -15,23 +15,36 @@ The development server prints its local and LAN URLs. For production output:
 
 ```sh
 bun run check
+bun run test
 bun run build
 bun run preview
 ```
 
-`check` validates the HTML; `build` writes the deployable site to `dist/`. There is no TypeScript to typecheck. Run both checks before submitting a pull request. GitHub Actions runs both checks on pull requests and pushes to `master`.
+`check` validates the HTML; `build` writes the deployable site to `dist/`. There is no TypeScript to typecheck. Run all three checks before submitting a pull request. GitHub Actions runs these checks on pull requests and pushes to `master`.
 
-## Game selection
+## Game launcher
 
-`index.html` remains the source of truth for names, statuses, artwork, and destinations. `game-select.js` derives the console selector and Details screen from those articles. If JavaScript is unavailable or initialization fails, the static catalog remains usable.
+`index.html` remains the source of truth for names, statuses, artwork, screenshots, and destinations. `game-select.js` builds the rotating circular wheel from those articles. The original scrollable catalog remains available without JavaScript. No runtime dependencies were added.
 
-The enhanced interface fills the viewport without document scrolling. Desktop shows all eight games; phones show two larger tiles per bank. Select with the tiles, arrow buttons, arrow keys, Home/End, or a horizontal swipe over the scene. Tab reaches actions; Enter on the selected tile launches its game. Details is a native modal with Escape/Back and focus restoration. Keyboard focus has a white ring distinct from the selected game's accent.
+The launcher uses the available viewport directly. TV/desktop places the title left of a circular wheel; portrait centers the selected disc with adjacent discs on an arc and stacked Play/Details controls; short landscape keeps text left and the wheel right. Cinema view changes the wheel into a depth carousel. Background artwork crossfades only after decoding successfully. There is no automatic selection/attract mode to compete with input. Screenshot galleries live in Details, retain captions, and support previous/next controls and horizontal keyboard navigation.
 
-Each game except Power Up has three in-game views in a contained screenshot gallery, with clickable thumbnails, previous/next controls, keyboard arrows while the gallery has focus, and horizontal swipe selection. Views rotate every six seconds; Pause/Resume applies across game selections. Rotation stops while Details is open or the page is hidden and resumes with a fresh interval. Changing games resets its gallery to the first view.
+- **Keyboard:** focus the launcher; arrows browse, Enter/Space activates the focused control, X opens Details, Y changes view, F toggles fullscreen, Escape/Backspace closes a launcher dialog. Tab reaches each action. Enter on the selected disc launches; clicking a neighbor selects it. Returning from Details or a game restores focus.
+- **Controller:** a standard-mapping gamepad uses D-pad/left stick to browse, A to activate the focused control, B to go back, X for Details, Y for view, and shoulders to browse. The launcher must own browser focus; a newly connected/focused controller must return to neutral before commands are accepted. Stick engagement uses a 0.55 deadzone with 0.30 release hysteresis, 360 ms initial repeat, and 155 ms subsequent repeats.
+- **Touch/pointer:** drag the wheel horizontally; the TV wheel also accepts vertical drags (down brings in the title above). The wheel follows the actual pointer continuously with capture after 8 CSS px of axis intent. Portrait ignores predominantly vertical gestures. Selection/title semantics commit only on release. A slow drag under 28% of a disc step returns; a deliberate drag or flick advances at most one neighbor. Flicks require at least 10 px and 0.45 px/ms recent velocity; the last 90 ms of motion projects 160 ms forward so a reversal can cancel or reverse intent. A step is 65% of disc width, with a 110 px minimum. Held displacement is capped at 0.92 steps. These tunable judgments live in `wheel-gesture.js`; physical feel still requires owner testing. Settling starts from the actual held angle. Release clicks, extra fingers, pointer cancellation, focus loss, resize/orientation changes, and page suspension are handled without launching a title.
 
-Background changes crossfade over 360 ms; reduced motion switches immediately. Rapid selection cancels obsolete transitions; during a crossfade, a failed artwork load keeps the previous image. Fullscreen is optional and appears only where supported. There is no autoplay audio, video, or gamepad polling.
+Existing `#games`, `#arcade`, `#experiments`, `#experiments-heading`, and game-heading fragments remain supported; `#heavy-rig-title` also accepts the existing `#iron-wake-title` entry. Selection replaces the fragment without adding history entries. Steam, source, playground, and standalone links retain their destinations. Prototype/status labels remain explicit.
 
-Existing `#games`, `#experiments`, `#arcade`, and game-heading fragments remain supported. Selection replaces the fragment instead of adding browser-history entries. Browser, Steam, source, and playground links retain their existing destinations and open in a new tab. The no-JavaScript catalog uses ordinary document scrolling so all content remains accessible.
+## Embedded games
+
+`game-host.js` creates one iframe for the selected HTTPS catalog URL. Launch expands from the selected disc, starts the actual request immediately, and offers **Show game**, **Open standalone**, and **Game menu**. A real iframe `load` event changes the wording to **Game page loaded / Enter game**; it never establishes asset readiness. After 18 seconds without that event the host reports a slow connection, with the same escape routes. An observable iframe error reports failure. Browsers can dispatch `load` for an error document and cannot expose every cross-origin certificate, framing-policy, network, or application error: standalone remains available at every stage. No screenshot, timer, or invented messaging event is used as playable readiness.
+
+A persistent 48 px host bar keeps Game menu available. Enter transfers focus to the frame. The frame allows gamepad, autoplay, fullscreen and pointer lock, and is sandboxed to prevent top-level navigation while permitting scripts, origin storage, forms and external popups. A game entering its own fullscreen can cover the host bar; browser Escape returns from that fullscreen. Launcher fullscreen expands the complete host. Browser restrictions or user settings may deny either operation.
+
+Normal keyboard/controller commands belong to a running game. Hold controller **View + Menu** for 550 ms to open the launcher menu, or use its persistent button. Keyboard events inside a cross-origin frame cannot be intercepted by the launcher. Gamepad state is shared across frames, so a game can also receive the host chord or continue polling while the launcher menu is open. The menu explicitly says the game may keep running. The launcher does not pause or save games. Exit requires a separate confirmation that unsaved progress may be lost; confirmation removes the frame/browsing context, restores the selected title and Play focus, and clears the host timeout. Page teardown also removes the frame. Opening standalone starts a separate game session; progress transfer is not promised.
+
+No independent game repos or integration contracts are changed. For fully coordinated readiness, pause/resume, controller ownership and safe-to-exit reporting, each game would need an agreed opt-in `postMessage` contract with validated source/origin, an explicit ready signal after its assets/save initialization, and acknowledged pause/resume/save state. The host intentionally does not infer these states today. Embedded storage/fullscreen/audio behavior and cross-origin availability require game/browser testing; standalone avoids many embedding restrictions.
+
+Local Chromium verification on 2026-11-15 loaded real embedded documents for Math Marsh, Starward Tide, Gateward, Heavy Rig, Dreadwake and Power Up; this is not full gameplay/hardware acceptance. Reactionator failed TLS hostname validation (`ERR_CERT_COMMON_NAME_INVALID`): its domain/certificate configuration needs repair in its hosting setup. All or Nothing returned a Cloudflare challenge (HTTP 403) with `X-Frame-Options: SAMEORIGIN`, which Chromium refused to embed. Its owner needs an edge/challenge configuration that permits the intended launcher origin before embedding can work; the catalog and standalone destination are preserved. Both failures can still dispatch iframe `load`. Cross-origin autofocus was also blocked in Starward Tide during initial loading; Enter game transfers frame focus explicitly.
 
 ## Analytics
 
@@ -71,4 +84,4 @@ Gateward has its own destination at [gateward.deegeegames.com](https://gateward.
 
 ## Artwork and credits
 
-All artwork is bundled locally. See [assets/README.md](assets/README.md) for provenance and retained notices. Layout follows the approved cinematic console direction, with the official logo, per-game imagery and accents, a persistent selector, and a separate Details screen. Gameplay screenshots use a contained gallery so the complete interface remains visible. Banner artwork stays behind Math Marsh and All or Nothing; screenshot based entries use a blurred, subdued backdrop. Power Up retains its single-image presentation. The no-JavaScript catalog includes the same screenshots as static images.
+All artwork is bundled locally. See [assets/README.md](assets/README.md) for provenance and retained notices. Layout follows the approved rotating circular wheel, with the official logo, per-game artwork and accents, a persistent launcher, and a separate Details screen. Gameplay screenshots use a contained gallery in Details so the complete interface remains visible. Power Up retains its single-image presentation. The no-JavaScript catalog includes the same screenshots as static images.
