@@ -23,63 +23,42 @@
 	</head>
 	<body>
 		<a class="skip" href="#games">Skip to games</a>
-		<main class="console cinema" id="arcade" aria-label="Game selector" hidden>
-			<img class="art" src="./assets/math-marsh.webp" alt="">
-			<div class="shade"></div>
-			<header>
-				<a class="brand" href="./" aria-label="DeeGee Games home"><img src="./assets/deegee-games.svg" alt="DeeGee Games" width="2985" height="960"></a>
-				<button class="fullscreen" type="button" hidden>Fullscreen</button>
-				<p class="eyebrow">Select your next world</p>
+		<main class="console" id="arcade" aria-label="DeeGee Games launcher" tabindex="-1" hidden>
+			<div class="backdrop" aria-hidden="true"><img class="background-art" src="./assets/math-marsh.webp" alt=""><img class="background-art" src="./assets/math-marsh.webp" alt=""></div>
+			<div class="ambient" aria-hidden="true"></div><div class="veil" aria-hidden="true"></div>
+			<header class="launcher-header" aria-label="Launcher controls">
+				<a class="brand" href="#games" aria-label="DeeGee Games library"><img src="./assets/deegee-games.svg" alt="DeeGee Games" width="2985" height="960"></a>
+				<span class="topline">YOUR ARCADE</span>
+				<div class="system"><span class="controller-status">Keyboard / controller</span><time class="clock"></time><button class="fullscreen" type="button" title="Fullscreen (F)" hidden>⛶</button></div>
 			</header>
-			<div class="feature">
-				<section class="stage" aria-labelledby="selected-title">
-					<p class="status"></p>
-					<h1 id="selected-title">Math Marsh</h1>
-					<p class="description"></p>
-					<div class="actions">
-						<a class="launch" href="https://mathmarsh.deegeegames.com/" target="_blank" rel="noopener noreferrer">Play ↗</a>
-						<button class="more" type="button">Details</button>
-					</div>
-				</section>
-				<section class="gallery" aria-label="Gameplay screenshots" hidden>
-					<div class="gallery-frame">
-						<img class="gallery-image" src="./assets/math-marsh.webp" alt="" decoding="async">
-					</div>
-					<div class="gallery-bar">
-						<p class="gallery-caption"></p>
-						<div class="gallery-controls">
-							<span class="gallery-count"></span>
-							<button class="shot-prev" type="button" aria-label="Previous screenshot">‹</button>
-							<button class="shot-pause" type="button" aria-label="Pause screenshot rotation">Ⅱ</button>
-							<button class="shot-next" type="button" aria-label="Next screenshot">›</button>
-						</div>
-					</div>
-					<div class="shots" role="group" aria-label="Choose a screenshot"></div>
-				</section>
-			</div>
-			<div class="bottom">
-				<nav class="library" aria-label="Choose a game"></nav>
-				<footer>
-					<div class="hint"><span class="guide"></span><span class="page-label"></span></div>
-					<div class="pager">
-						<button class="arrow prev" type="button" aria-label="Previous game">‹</button>
-						<span class="count" aria-hidden="true"></span>
-						<button class="arrow next" type="button" aria-label="Next game">›</button>
-					</div>
-				</footer>
-			</div>
-			<p class="screenreader" id="selection-status" aria-live="polite" aria-atomic="true"></p>
-			<dialog class="modal" aria-labelledby="detail-title">
-				<img class="detail-art" src="./assets/math-marsh.webp" alt="">
+			<div class="orbit-guide" aria-hidden="true"></div><div class="orbit-core" aria-hidden="true"><b>08</b>WORLDS</div>
+			<div class="focus-marker" aria-hidden="true"></div>
+			<nav class="wheel" aria-label="Choose a game"></nav>
+			<section class="selection" aria-labelledby="selected-title">
+				<p class="eyebrow genre"></p><h1 id="selected-title">Math Marsh</h1><p class="description"></p><p class="status"></p>
+			</section>
+			<button class="direction previous" type="button" aria-label="Previous game">⌃</button><button class="direction next" type="button" aria-label="Next game">⌄</button>
+			<p class="swipe-hint">Swipe to turn the wheel</p>
+			<div class="counter"><strong class="count">01</strong><span class="dash"></span><span class="total">08</span><div class="dots" aria-hidden="true"></div></div>
+			<footer class="prompts" aria-label="Library actions">
+				<button class="prompt primary play" type="button"><span class="key" data-pad="A" data-key="↵">↵</span>Play</button>
+				<button class="prompt more" type="button"><span class="key blue" data-pad="X" data-key="X">X</span>Details</button>
+				<button class="prompt view" type="button"><span class="key yellow" data-pad="Y" data-key="Y">Y</span><span class="view-label">Cinema view</span></button>
+				<span class="input-hint">↑ ↓ / ← → Browse · Enter Play</span>
+			</footer>
+			<dialog class="details-modal" aria-labelledby="detail-title">
 				<button class="close" type="button" autofocus>Back · Esc</button>
-				<p class="detail-index eyebrow"></p>
-				<h2 id="detail-title">Game details</h2>
-				<p class="detail-description"></p>
-				<p class="input"></p>
-				<p class="artnote"></p>
-				<div class="destinations"></div>
-				<p class="destination-note">Links open in a new tab. <a href="https://experiments.deegeegames.com/" target="_blank" rel="noopener noreferrer">Visit the playground ↗</a></p>
+				<div class="detail-copy"><p class="eyebrow">INSIDE THE GAME</p><h2 id="detail-title">Game details</h2><p class="detail-description"></p><p class="detail-status"></p><p class="detail-input"></p><p class="artnote"></p></div>
+				<section class="detail-gallery" aria-label="Gameplay screenshots"><img class="detail-shot" src="./assets/math-marsh.webp" alt=""><div class="shot-controls"><button class="shot-prev" type="button" aria-label="Previous screenshot">←</button><p class="shot-caption"></p><button class="shot-next" type="button" aria-label="Next screenshot">→</button></div></section>
+				<div class="detail-actions"><button class="primary detail-play" type="button">▶ Play here</button><div class="destinations"></div><a href="https://experiments.deegeegames.com/" target="_blank" rel="noopener noreferrer">Visit the playground ↗</a></div>
 			</dialog>
+			<section class="game-host" aria-label="Active game" hidden>
+				<div class="frame-slot"></div>
+				<div class="host-bar"><span class="host-name"></span><span class="host-chord">Hold View + Menu for launcher menu</span><button class="host-menu-trigger" type="button" title="Controller: hold View + Menu">☰ Game menu</button></div>
+				<div class="launch-cover"><img class="launch-art" src="./assets/math-marsh.webp" alt=""><div class="launch-content"><p class="eyebrow">OPENING YOUR WORLD</p><h2 class="launch-title">Opening game</h2><p class="load-status" role="status"></p><div class="loadline"></div><div class="launch-actions"><button class="enter-game primary" type="button">Show game</button><a class="standalone" href="https://mathmarsh.deegeegames.com/" target="_blank" rel="noopener noreferrer">Open standalone ↗</a><button class="launch-menu" type="button">Game menu</button></div></div></div>
+			</section>
+			<dialog class="game-menu" aria-labelledby="menu-title"><p class="eyebrow">GAME MENU</p><h2 id="menu-title">Game menu</h2><p class="menu-note">The game may continue running while this menu is open.</p><div class="menu-options"><button class="resume-game primary" type="button" autofocus>Return to game</button><button class="host-fullscreen" type="button">Toggle fullscreen</button><a class="menu-standalone" href="https://mathmarsh.deegeegames.com/" target="_blank" rel="noopener noreferrer">Open standalone ↗</a><button class="exit-game" type="button">Exit to library</button></div><p class="menu-help">Save in the game before leaving. Progress and saves belong to the game.</p></dialog>
+			<p class="toast" role="status" hidden></p>
 		</main>
 		<main class="catalog" id="games" aria-label="Game catalog" tabindex="-1">
 			<a href="./"><img class="catalog-brand" src="./assets/deegee-games.svg" alt="DeeGee Games" width="2985" height="960"></a>

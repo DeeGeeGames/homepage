@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "vite --host 0.0.0.0",
 		"check": "html-validate index.html",
+		"test": "bun test",
 		"build": "vite build",
 		"preview": "vite preview --host 0.0.0.0"
 	},
