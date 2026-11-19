@@ -135,7 +135,10 @@ export const createGameHost = function (root, callbacks) {
 	enter.addEventListener('click', focusGame);
 	find('.host-menu-trigger').addEventListener('click', openMenu);
 	find('.launch-menu').addEventListener('click', openMenu);
-	find('.host-fullscreen').addEventListener('click', callbacks.fullscreen);
+	find('.host-fullscreen').addEventListener('click', function () {
+		closeMenu();
+		callbacks.fullscreen();
+	});
 	resume.addEventListener('click', closeMenu);
 	exit.addEventListener('click', function () {
 		if (!confirming) {
